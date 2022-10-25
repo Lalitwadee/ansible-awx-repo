@@ -1,0 +1,9 @@
+---
+- hosts: call firewall for web server (nginx)
+  tasks:
+    - name: Include task install ngix
+      ansible.builtin.include_tasks: install-nginx.yaml
+    - name: Call firewall
+      roles:
+        - firewalld
+
