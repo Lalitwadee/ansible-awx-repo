@@ -3,6 +3,10 @@
   hosts: nginx_nodes
   become: yes
   tasks:
+    - name: Call Firewalld Roles
+      roles:
+       - firewalld
+      #ansible.builtin.include_tasks: main.yaml
     - name: Install nginx latest version and start service
       apt:
        name: nginx
@@ -21,8 +25,3 @@
       ansible.builtin.service:
        name: nginx
        state: restarted
-    
-- name: Call Firewalld Roles
-  hosts: nginx_nodes
-  roles:
-   - firewalld

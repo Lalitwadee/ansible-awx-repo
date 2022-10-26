@@ -1,12 +1,33 @@
 ---
 - name: Config Firewal
   tasks:
+
+  - name: Install firewalld if not Installed
+    become: yes
+    yum:
+      name: firewalld
+      state: present
+  
+  - name: Start and Enabled firewalld
+    become: yes
+    service:
+      name: firewalld
+      state: started
+      enabled: yes
+
   - name: FirewallD rules
     firewalld:
       permanent: yes
       immediate: yes
       service: "{{ item }}"
       state: enabled
-    with_items:
+    loop:
       - http
       - https
+    
+  - name: Restart firewalld
+    become: yes
+    service: 
+      name: firewalld
+      state: restarted
+
