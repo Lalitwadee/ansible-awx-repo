@@ -19,11 +19,11 @@
     firewalld:
       permanent: yes
       immediate: yes
-      service: "{{ item }}"
-      state: enabled
+      port: "{{item.port}}/{{item.proto}}"
+      state: "{{item.state}}"
     loop:
-      - http
-      - https
+     - {port: "80", proto: "tcp", state: "enabled"}
+     - {port: "443", proto: "tcp", state: "enabled"}
     
   - name: Restart firewalld
     become: yes

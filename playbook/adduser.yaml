@@ -1,0 +1,26 @@
+---
+- hosts: nginx_nodes
+  become: yes
+  vars:
+    user: "{{ user.user_name }}"
+    ssh_pass: "{{ user.ssh_pass }}"
+    connection: "{{ user.connection }}"
+  
+  tasks:
+  - name: Create user
+    no_log: true
+    user:
+      name: "{{ user }}"
+      password: "{{ ssh_pass | password_hash('sha512')}}"
+      update_Password: on_create
+  
+  - name: Create user dir
+    ansible.builtin.file:
+    path: ~/ansible
+    state: directory
+    mode: '0755'
+
+  - name: Create SSH Key-Pair
+    become: yes
+    become_user: "{{ user }}"
+    local_action: command ssh-keygen -t rsa -b 4096 -N "" -q -f ~/ansible/id_rsa
