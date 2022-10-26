@@ -1,2 +1,0 @@
-[nginx_nodes]
-server1 ansible_ssh_host=172.31.31.216

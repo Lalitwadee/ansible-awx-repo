@@ -1,5 +1,6 @@
 ---
 - hosts: 172.31.90.6
+  become: yes
   tasks:
     - name: Include task install ngix
       ansible.builtin.include_tasks: install-nginx.yaml

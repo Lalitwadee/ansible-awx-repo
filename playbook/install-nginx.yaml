@@ -1,6 +1,5 @@
 ---
 - name: Deploying nginx webserver
-  hosts: nginx_nodes
   become: yes
   tasks:
     - name: Install nginx latest version and start service
