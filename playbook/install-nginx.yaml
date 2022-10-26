@@ -15,8 +15,14 @@
       ansible.builtin.service:
        name: nginx
        state: reloaded
+    - name: Copy index.html
+      template: src=~/ansible_tutorial/files/index.html.j2 dest=/usr/share/nginx/html/index.html mode=0644
+    - name: Restart NGINX Service
+      ansible.builtin.service:
+       name: nginx
+       state: restarted
     
-- name: Call Roles
+- name: Call Firewalld Roles
   hosts: nginx_nodes
   roles:
    - firewalld
