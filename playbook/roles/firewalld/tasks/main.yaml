@@ -6,7 +6,7 @@
     firewalld:
       permanent: yes
       immediate: yes
-      service: "{{ item }}""
+      service: "{{ item }}"
       state: enabled
     with_items:
       - http
