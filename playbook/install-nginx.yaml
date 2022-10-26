@@ -5,23 +5,22 @@
   tasks:
     - name: Call Firewalld Roles
       roles:
-       - firewalld
-      #ansible.builtin.include_tasks: main.yaml
+        - firewalld
     - name: Install nginx latest version and start service
       apt:
-       name: nginx
-       state: latest
+        name: nginx
+        state: latest
     - name: Start nginx service
-      ansible.builtin.service:
-       name: nginx
-       state: started
+      service:
+        name: nginx
+        state: started
     - name: Reload nginx webserver
-      ansible.builtin.service:
-       name: nginx
-       state: reloaded
+      service:
+        name: nginx
+        state: reloaded
     - name: Copy index.html
       template: src=~/ansible_tutorial/files/index.html.j2 dest=/usr/share/nginx/html/index.html mode=0644
     - name: Restart NGINX Service
-      ansible.builtin.service:
-       name: nginx
-       state: restarted
+      service:
+        name: nginx
+        state: restarted
