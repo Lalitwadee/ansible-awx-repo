@@ -1,5 +1,5 @@
 ---
-- name: Config-Firewal
+- name: Config Firewal
   tasks:
   - name: FirewallD rules
     firewalld:
