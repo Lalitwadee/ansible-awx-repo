@@ -16,6 +16,7 @@
        name: nginx
        state: reloaded
     
-    - name: Call firewall
-      roles:
-        - firewalld
+- name: Call Roles
+  hosts: nginx_nodes
+  roles:
+   - firewalld
